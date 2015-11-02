@@ -1,1 +1,10 @@
 /* Forecast.css data */
+#forecast table
+{
+	border:1px black solid;
+}
+
+#forecast th, #forecast td
+{
+	border: 1px black solid;
+}
