@@ -1,10 +1,39 @@
 /* Forecast.css data */
-#forecast table
+#forecast
 {
-	border:1px black solid;
+	min-width:500px;
+	max-width:800px;
 }
 
-#forecast th, #forecast td
+#forecast table
 {
-	border: 1px black solid;
+	width:100%;
+	font-family:sans-serif;
+	border-collapse:collapse;
+	border: 1px solid black;
+}
+
+#forecast th
+{
+	border-left: 1px black solid;
+	border-right: 1px black solid;
+	border-bottom: 1px black double;
+	
+}
+
+#forecast td
+{
+	border-left: 1px black solid;
+	border-right: 1px black solid;
+	padding:15px;
+}
+
+#forecast #icon
+{
+	width:50px;
+}
+
+#forecast tr:nth-child(even)
+{
+	background-color:hsla(180,50%,50%,0.5);
 }

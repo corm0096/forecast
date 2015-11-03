@@ -1,3 +1,7 @@
+//Original graphics from Design Instruct (designinstruct.com), modified by myself.
+
+var today=new Date(); //To be used to filter data in f'n writeline(), but needs only one Date call.
+
 function forecast()
 {
 	$.ajax(
@@ -16,24 +20,34 @@ function forecastloaded(data,textStatus,jOBJ)
 	$("#forecast table").append("<thead></thead>");
 	$("#forecast thead").append("<tr></tr>");
 	$("#forecast tr").append(
-		"<th>% humidity</th>",
-		"<th>% cloud cover</th>",
-		"<th>Temp (C)</th>",
-		"<th>wind speed (km/hr)</th>",
-		"<th></th>","<th>Summary</th>");
+		"<th>Time</th>",
+		"<th>Humidity</th>",
+		"<th>Cloud Cover</th>",
+		"<th>Temp</th>",
+		"<th>Wind Speed</th>",
+		"<th id='icon' colspan=2>Summary</th>");
 	$("#forecast table").append("<tbody></tbody>");
-		
+		console.log(data);
 	$.each(data.hourly.data, writeline);
+	$("#forecast body").append("<img src='img/rain.png' />");
 }
 
 function writeline(index,weatherdata)
-{	
-	$("#forecast tbody").append("<tr></tr>", [
-			"<td>"+Math.round(weatherdata.humidity*100)+"</td>",
-			"<td>"+Math.round(weatherdata.cloudCover*100)+"</td>",
-			"<td>"+weatherdata.temperature+"</td>",
-			"<td>"+weatherdata.windSpeed+"</td>",
-			"<td>"+weatherdata.icon+"</td>",
-			"<td>"+weatherdata.summary+"</td>"
-	]);	
+{
+	var hourtime=new Date(weatherdata.time*1000);
+	console.log(hourtime.getDay());
+	if (hourtime.getDay()===today.getDay())
+	{
+		var newtr=document.createElement("tr");	
+		$("#forecast tbody").append(newtr);
+		$(newtr).append(
+				"<td>"+hourtime.getHours()+":00"+"</td>",
+				"<td>"+Math.round(weatherdata.humidity*100)+"%</td>",
+				"<td>"+Math.round(weatherdata.cloudCover*100)+"%</td>",
+				"<td>"+weatherdata.temperature+" (C)</td>",
+				"<td>"+weatherdata.windSpeed+" (km/hr)</td>",
+				"<td><img src='img/"+weatherdata.icon+".png' /></td>",
+				"<td>"+weatherdata.summary+"</td>"
+		);
+	}
 }
