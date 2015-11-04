@@ -27,7 +27,6 @@ function loadtallier()
 {
 	//Since both jquery and the forecast code must load, the order in which it loads, or tracking them separately, are moot points.
 	loadtally++;
-	console.log(loadtally+" of two have loaded.");
 	if(loadtally===2)
 	{
 		forecast();

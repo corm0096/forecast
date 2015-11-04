@@ -27,7 +27,6 @@ function forecastloaded(data,textStatus,jOBJ)
 		"<th>Wind Speed</th>",
 		"<th id='icon' colspan=2>Summary</th>");
 	$("#forecast table").append("<tbody></tbody>");
-		console.log(data);
 	$.each(data.hourly.data, writeline);
 	$("#forecast body").append("<img src='img/rain.png' />");
 }
@@ -35,7 +34,6 @@ function forecastloaded(data,textStatus,jOBJ)
 function writeline(index,weatherdata)
 {
 	var hourtime=new Date(weatherdata.time*1000);
-	console.log(hourtime.getDay());
 	if (hourtime.getDay()===today.getDay())
 	{
 		var newtr=document.createElement("tr");	
