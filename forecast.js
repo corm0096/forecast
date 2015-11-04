@@ -14,7 +14,7 @@ function forecast()
 		.fail();
 }
 
-function forecastloaded(data,textStatus,jOBJ)
+function forecastloaded(w_data,textStatus,jOBJ)
 {
 	$("#forecast").append("<table></table>");
 	$("#forecast table").append("<thead></thead>");
@@ -27,8 +27,7 @@ function forecastloaded(data,textStatus,jOBJ)
 		"<th>Wind Speed</th>",
 		"<th id='icon' colspan=2>Summary</th>");
 	$("#forecast table").append("<tbody></tbody>");
-	$.each(data.hourly.data, writeline);
-	$("#forecast body").append("<img src='img/rain.png' />");
+	$.each(w_data.hourly.data, writeline);
 }
 
 function writeline(index,weatherdata)
